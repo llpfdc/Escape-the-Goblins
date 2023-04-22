@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
      {
         jump = 0;
-        left = 1;
-        right = 0;
+        left = 0;
+        right = 1;
      }
     void Update()
     {
