@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //rb.AddForce(0, 0, forwardForce * Time.deltaTime);
         //vertMov = Input.GetAxis("Vertical");
+        if(rb.transform.position.y < 1) isDead = true;
         if (!isDead)
         {
             anim.SetFloat("movY", Time.deltaTime * speed);
@@ -58,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator WaitAfterDead()
     {
         anim.SetBool("Death", true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("GameScene");
     }
 
