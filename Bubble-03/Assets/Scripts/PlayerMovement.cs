@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public int jump;
     public Animator anim;
     public float speed = 3f;
-    public float jumpForce = 4000f;
+    public float jumpForce = 400f;
     public float vertMov;
     public int left;
     public int right;
@@ -28,15 +28,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (jump < 2 && left <= 1 && right <= 1)
             {
-                rb.AddForce(0, 400, 0);
+                rb.AddForce(0, jumpForce, 0);
                 ++jump;
             }else
-            if(left == 2){
-                //rb.MovePosition(rb.position + movement);
+            if(left == 2 && jump == 0){
                 transform.Rotate(0, -90, 0);
                 left = 0;
                 right = 1;
-            } else if (right == 2)
+            } else if (right == 2 && jump == 0)
             {
                 transform.Rotate(0, 90, 0);
                 left = 1;

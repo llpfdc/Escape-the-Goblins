@@ -13,7 +13,12 @@ public class playerCollision : MonoBehaviour
         {
             cs.jump = 0;
         }
-        if(c.collider.tag == "Swap")
+        
+    }
+
+    void OnTriggerEnter(Collider c)
+    {
+        if (c.tag == "Swap")
         {
             if (cs.right == 1) cs.right = 2;
             if (cs.left == 1) cs.left = 2;
