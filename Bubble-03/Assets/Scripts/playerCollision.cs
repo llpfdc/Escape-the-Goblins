@@ -13,7 +13,12 @@ public class playerCollision : MonoBehaviour
         {
             cs.jump = 0;
         }
-        
+
+        if (c.collider.tag == "Obstacle")
+        {
+            cs.isDead = true;
+        }
+
     }
 
     void OnTriggerEnter(Collider c)
