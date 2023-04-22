@@ -18,5 +18,9 @@ public class playerCollision : MonoBehaviour
             if (cs.right == 1) cs.right = 2;
             if (cs.left == 1) cs.left = 2;
         }
+        if(c.collider.tag == "Obstacle")
+        {
+            cs.isDead = true;
+        }
     }
 }
