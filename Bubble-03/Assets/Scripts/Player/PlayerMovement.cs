@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
     {
         anim.SetBool("Death", true);
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("deathMenu");
     }
 
 }
