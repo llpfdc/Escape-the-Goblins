@@ -7,6 +7,11 @@ TagManager:
   - Obstacle
   - Ground
   - Swap
+  - Recta
+  - BarrelEnable
+  - GoblinEnable
+  - GoblinEnable1
+  - GoblinEnable2
   layers:
   - Default
   - TransparentFX
