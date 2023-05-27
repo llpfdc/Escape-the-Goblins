@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
-    public void playGame()
+    void Update()
     {
-        SceneManager.LoadScene("GameScene"); // jugar
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("GameScene");
+        }
     }
 
     public void quitGame()

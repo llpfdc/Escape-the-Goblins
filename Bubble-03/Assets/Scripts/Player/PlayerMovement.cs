@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 endPosition;
     private float elapsedTime;
     private float percentage;
+
+    public static bool GameIsEnded = false;
+
     void Start()
      {
         jump = 0;
@@ -52,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         if (!isDead){
             anim.SetFloat("movY", Time.deltaTime * speed);
             transform.Translate(0, 0, Time.deltaTime * speed);
+            GameIsEnded = false;
+
         }
         else{
             StartCoroutine(WaitAfterDead());
@@ -85,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
     {
         anim.SetBool("Death", true);
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("deathMenu");
+        GameIsEnded = true;
     }
 
 }
