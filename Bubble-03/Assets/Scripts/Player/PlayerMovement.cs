@@ -19,8 +19,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 endPosition;
     private float elapsedTime;
     private float percentage;
+
+    public static bool GameIsEnded = false;
+
     void Start()
-     {
+    {
         jump = 0;
         left = 0;
         right = 1;
@@ -36,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             percentage = elapsedTime / 0.6f;
             transform.position = Vector3.Lerp(startPosition, endPosition, percentage);
         }
-        if (elapsedTime != -1f && percentage >= 1) 
+        if (elapsedTime != -1f && percentage >= 1)
         {
             elapsedTime = -1f;
             cs.correctPos = true;
@@ -49,35 +52,44 @@ public class PlayerMovement : MonoBehaviour
             endPosition = new Vector3(cs.centerX, rb.transform.position.y, cs.centerZ);
         }
         if (rb.transform.position.y < 1) isDead = true;
-        if (!isDead){
+        if (!isDead)
+        {
             anim.SetFloat("movY", Time.deltaTime * speed);
             transform.Translate(0, 0, Time.deltaTime * speed);
+            GameIsEnded = false;
+
         }
-        else{
+        else
+        {
             StartCoroutine(WaitAfterDead());
         }
-        
-        if (Input.GetKeyDown("space") ) {
-            if (jump < 2 && left <= 1 && right <= 1) {
+
+        if (Input.GetKeyDown("space"))
+        {
+            if (jump < 2 && left <= 1 && right <= 1)
+            {
                 rb.AddForce(0, jumpForce, 0);
                 ++jump;
-                
+
             }
-            else if(left == 2 && jump == 0){
-                
+            else if (left == 2 && jump == 0)
+            {
+
                 transform.Rotate(0, -90, 0);
                 left = 0;
                 right = 1;
-                
-            } else if (right == 2 && jump == 0)  {
-                
+
+            }
+            else if (right == 2 && jump == 0)
+            {
+
                 transform.Rotate(0, 90, 0);
                 left = 1;
                 right = 0;
-                
+
             }
 
-            
+
         }
     }
 
@@ -85,8 +97,7 @@ public class PlayerMovement : MonoBehaviour
     {
         anim.SetBool("Death", true);
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("deathMenu");
+        GameIsEnded = true;
     }
 
 }
- 
