@@ -22,6 +22,5 @@ public class spinToWin2 : MonoBehaviour
         }
         if (transform.position.z > -111) up = true;
         if (transform.position.z < -113) up = false;
-        Debug.Log(transform.position.z);
     }
 }

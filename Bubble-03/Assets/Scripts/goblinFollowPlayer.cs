@@ -11,6 +11,7 @@ public class goblinFollowPlayer : MonoBehaviour
     public int left;
     public int right;
     public int timerSwap;
+    public bool firstSwap;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class goblinFollowPlayer : MonoBehaviour
         right = 1;
         timerSwap = 0;
         goblinEnable = false;
+        firstSwap = true;
     }
 
     // Update is called once per frame
@@ -27,13 +29,25 @@ public class goblinFollowPlayer : MonoBehaviour
         if ( cs.tag == "Swap" && left == 2)
         {
             transform.Rotate(0, -90, 0);
+            
             left = 0;
             right = 1;
         } else if (cs.tag == "Swap" && right == 2)
         {
-            transform.Rotate(0, 90, 0);
-            left = 1;
-            right = 0;
+            if (!firstSwap)
+            {
+                transform.Rotate(0, 90, 0);
+                left = 1;
+                right = 0;
+            }
+            else
+            {
+                firstSwap = false;
+                left = 0;
+                right = 1;
+            }
+
+
         }
     }
 }
