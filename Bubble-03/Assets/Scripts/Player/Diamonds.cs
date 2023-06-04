@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Diamonds : MonoBehaviour
 {
+    
     private void OnTriggerEnter(Collider other)
     {
         Inventory inventory = other.GetComponent<Inventory>();

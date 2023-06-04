@@ -10,11 +10,12 @@ public class Menus : MonoBehaviour
     public GameObject PauseMenuIU;
     public GameObject DeathMenuIU;
     public GameObject InstructionsMenuIU;
+    public GameObject WinMenuIU;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !(PlayerMovement.GameIsEnded))
+        if (Input.GetKeyDown(KeyCode.Escape) && !(PlayerMovement.GameIsEnded) && !(PlayerMovement.GameIsWinned))
         {
             if (GameIsPaused)
             {
@@ -30,6 +31,10 @@ public class Menus : MonoBehaviour
         {
             DeathMenuIU.SetActive(true);
         }
+        else if (PlayerMovement.GameIsWinned) 
+        {
+            end();
+        }
         else
         {
             DeathMenuIU.SetActive(false);
@@ -40,6 +45,7 @@ public class Menus : MonoBehaviour
     public void Resume()
     {
         PauseMenuIU.SetActive(false);
+        WinMenuIU.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
 
@@ -48,6 +54,7 @@ public class Menus : MonoBehaviour
     void Pause()
     {
         PauseMenuIU.SetActive(true);
+        WinMenuIU.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
 
@@ -82,5 +89,12 @@ public class Menus : MonoBehaviour
     {
         InstructionsMenuIU.SetActive(false);
         PauseMenuIU.SetActive(true);
+    }
+
+
+    public void end() 
+    {
+        Time.timeScale = 0f;
+        WinMenuIU.SetActive(true);
     }
 }

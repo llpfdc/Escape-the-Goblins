@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerCollision : MonoBehaviour
-{ 
+{
+    [SerializeField] private AudioSource bonk;
+    [SerializeField] private AudioSource collect;
+    [SerializeField] private AudioSource clonk;
     public PlayerMovement cs;
     public barrelGoesClonk barrel_cs;
     public goblinFollowPlayer goblin_cs1;
@@ -28,6 +31,7 @@ public class playerCollision : MonoBehaviour
         }
         if (tag == "Obstacle" && ! cs.godMode)
         {
+            bonk.Play();
             cs.isDead = true;
         }
 
@@ -46,6 +50,7 @@ public class playerCollision : MonoBehaviour
         }
         if (c.tag == "BarrelEnable")
         {
+            clonk.Play();
             barrel_cs.barrelEnable = true;
         }
         if (c.tag =="GoblinEnable1")
@@ -56,6 +61,15 @@ public class playerCollision : MonoBehaviour
         {
             goblin_cs2.goblinEnable = true;
         }
+        if (c.tag == "TheEnd") 
+        {
+            cs.youWin = true;
+        }
+        if (c.tag == "Diamond") 
+        {
+            collect.Play();
+        }
+
 
     }
 }

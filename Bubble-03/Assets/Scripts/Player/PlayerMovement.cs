@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public int left;
     public int right;
     public bool isDead;
+    public bool youWin;
     public playerCollision cs;
     private Vector3 startPosition;
     private Vector3 endPosition;
@@ -21,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     private float percentage;
     public bool godMode;
     public static bool GameIsEnded = false;
+    public static bool GameIsWinned = false;
+
+
+    [SerializeField] private AudioSource boing;
 
     void Start()
     {
@@ -29,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         left = 0;
         right = 1;
         isDead = false;
+        youWin = false;
         elapsedTime = -1f;
     }
     void Update()
@@ -53,6 +59,12 @@ public class PlayerMovement : MonoBehaviour
             endPosition = new Vector3(cs.centerX, rb.transform.position.y, cs.centerZ);
         }
         if (rb.transform.position.y < 1) isDead = true;
+
+        if (youWin)
+        {
+            GameIsWinned = true;
+        }
+
         if (!isDead)
         {
             anim.SetFloat("movY", Time.deltaTime * speed);
@@ -77,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (jump < 2 && left <= 1 && right <= 1)
             {
+                boing.Play();
                 rb.AddForce(0, jumpForce, 0);
                 ++jump;
 

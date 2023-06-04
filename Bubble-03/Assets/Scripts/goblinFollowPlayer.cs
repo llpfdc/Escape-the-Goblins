@@ -20,7 +20,10 @@ public class goblinFollowPlayer : MonoBehaviour
         timerSwap = 0;
         goblinEnable = false;
         firstSwap = true;
+
     }
+
+    [SerializeField] private AudioSource risagoblin;
 
     // Update is called once per frame
     void Update()
@@ -29,7 +32,6 @@ public class goblinFollowPlayer : MonoBehaviour
         if ( cs.tag == "Swap" && left == 2)
         {
             transform.Rotate(0, -90, 0);
-            
             left = 0;
             right = 1;
         } else if (cs.tag == "Swap" && right == 2)
@@ -42,6 +44,7 @@ public class goblinFollowPlayer : MonoBehaviour
             }
             else
             {
+                risagoblin.Play();
                 firstSwap = false;
                 left = 0;
                 right = 1;

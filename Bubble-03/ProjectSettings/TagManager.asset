@@ -12,6 +12,8 @@ TagManager:
   - GoblinEnable
   - GoblinEnable1
   - GoblinEnable2
+  - TheEnd
+  - Diamond
   layers:
   - Default
   - TransparentFX
