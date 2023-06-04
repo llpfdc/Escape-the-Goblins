@@ -31,7 +31,7 @@ public class playerCollision : MonoBehaviour
         }
         if (tag == "Obstacle" && ! cs.godMode)
         {
-            bonk.Play();
+            if(!cs.isDead)bonk.Play();
             cs.isDead = true;
         }
 

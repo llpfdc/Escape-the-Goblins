@@ -24,11 +24,16 @@ public class PlayerMovement : MonoBehaviour
     public static bool GameIsEnded = false;
     public static bool GameIsWinned = false;
 
-
     [SerializeField] private AudioSource boing;
 
     void Start()
     {
+        Resolution[] resolutions = Screen.resolutions;
+        Resolution targetResolution = resolutions[resolutions.Length - 1]; // Choose the last resolution in the list (usually the highest)
+
+        // Set the resolution
+        Screen.SetResolution(targetResolution.width, targetResolution.height, true);
+
         godMode = false;
         jump = 0;
         left = 0;
