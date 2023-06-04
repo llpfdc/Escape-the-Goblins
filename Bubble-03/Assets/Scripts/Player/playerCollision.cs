@@ -26,7 +26,7 @@ public class playerCollision : MonoBehaviour
             centerX = c.collider.bounds.center.x;
             centerZ = c.collider.bounds.center.z;
         }
-        if (tag == "Obstacle")
+        if (tag == "Obstacle" && ! cs.godMode)
         {
             cs.isDead = true;
         }

@@ -19,11 +19,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 endPosition;
     private float elapsedTime;
     private float percentage;
-
+    public bool godMode;
     public static bool GameIsEnded = false;
 
     void Start()
     {
+        godMode = false;
         jump = 0;
         left = 0;
         right = 1;
@@ -63,6 +64,14 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(WaitAfterDead());
         }
+        if (Input.GetKeyDown("g"))
+        {
+            godMode = !godMode;
+            foreach (var obj in GameObject.FindGameObjectsWithTag("Obstacle"))
+            {
+                obj.GetComponent<Collider>().enabled = false;
+            }
+        }
 
         if (Input.GetKeyDown("space"))
         {
@@ -88,8 +97,6 @@ public class PlayerMovement : MonoBehaviour
                 right = 0;
 
             }
-
-
         }
     }
 
